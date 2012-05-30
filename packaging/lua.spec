@@ -8,6 +8,7 @@ Group:      Development/Languages
 License:    MIT
 URL:        http://www.lua.org/
 Source0:    http://www.lua.org/ftp/lua-%{version}.tar.gz
+Source1001: packaging/lua.manifest 
 Patch0:     patch-lua-5.1.4-2
 Patch1:     lua-5.1.4-autotoolize.patch
 Patch2:     buildfix.patch
@@ -63,6 +64,7 @@ This package contains development files for %{name}.
 %patch2 -p1
 
 %build
+cp %{SOURCE1001} .
 # fix perms on auto files
 chmod u+x autogen.sh config.guess config.sub configure depcomp install-sh missing
 
@@ -92,15 +94,19 @@ rm -rf %{buildroot}
 %postun -n liblua -p /sbin/ldconfig
 
 %files
+%manifest lua.manifest
 %{_bindir}/lua*
 
 %files -n liblua
+%manifest lua.manifest
 %{_libdir}/liblua-*.so
 
 %files -n liblua-static
+%manifest lua.manifest
 %{_libdir}/*.a
 
 %files -n liblua-devel
+%manifest lua.manifest
 %{_includedir}/l*.h
 %{_includedir}/l*.hpp
 %{_libdir}/liblua.so
