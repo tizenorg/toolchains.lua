@@ -89,6 +89,10 @@ rm -rf %{buildroot}
 
 %remove_docs
 
+# Tizen SDK license
+mkdir -p %{buildroot}/usr/share/license
+cp COPYRIGHT %{buildroot}/usr/share/license/%{name}
+
 %post -n liblua -p /sbin/ldconfig
 
 %postun -n liblua -p /sbin/ldconfig
@@ -96,6 +100,7 @@ rm -rf %{buildroot}
 %files
 %manifest lua.manifest
 %{_bindir}/lua*
+/usr/share/license/%{name}
 
 %files -n liblua
 %manifest lua.manifest
