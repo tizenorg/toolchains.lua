@@ -13,6 +13,7 @@ Patch1:     lua-5.1.4-autotoolize.patch
 Patch2:     buildfix.patch
 BuildRequires:  pkgconfig(ncurses)
 
+
 %description
 Lua is a powerful light-weight programming language designed for
 extending applications. Lua is also frequently used as a
@@ -91,17 +92,20 @@ rm -rf %{buildroot}
 %postun -n liblua -p /sbin/ldconfig
 
 %files
+%defattr(-,root,root,-)
 %{_bindir}/lua*
 
 %files -n liblua
+%defattr(-,root,root,-)
 %{_libdir}/liblua-*.so
 
 %files -n liblua-static
+%defattr(-,root,root,-)
 %{_libdir}/*.a
 
 %files -n liblua-devel
+%defattr(-,root,root,-)
 %{_includedir}/l*.h
 %{_includedir}/l*.hpp
 %{_libdir}/liblua.so
 %{_libdir}/pkgconfig/*.pc
-
