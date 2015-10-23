@@ -87,6 +87,9 @@ rm -rf %{buildroot}
 
 %remove_docs
 
+mkdir -p %{buildroot}/usr/share/license
+cp COPYRIGHT %{buildroot}/usr/share/license/%{name}
+
 %post -n liblua -p /sbin/ldconfig
 
 %postun -n liblua -p /sbin/ldconfig
@@ -94,6 +97,7 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 %{_bindir}/lua*
+/usr/share/license/%{name}
 
 %files -n liblua
 %defattr(-,root,root,-)
